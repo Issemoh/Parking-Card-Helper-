@@ -29,20 +29,24 @@ namespace BusExpense
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-
+            // Calculate the number of days of parking, and any remaining credit, 
+            // for an amount of credit added to a campus card
+         
             bool creditValid = Double.TryParse(txtCreditAdded.Text, out double creditAdded); //inline variable creation
             bool costOneParkWithCardValid = Double.TryParse(txtOneParkWithCard.Text, out double costOneParkWithCard);
             bool costOneParkNoCardValid = Double.TryParse(txtOneParkNoCard.Text, out double costOneparkNoCard);
 
             if (creditValid && costOneParkWithCardValid && costOneParkNoCardValid)
             {
+                // Calculate number of times user can park, and any remaining credit
+
                 int daysParking = (int)(creditAdded / costOneParkWithCard);
                 double creditRemaining = creditAdded % costOneParkWithCard;
                 double oneDaySavings = costOneparkNoCard - costOneParkWithCard;
                 double totalSavings = daysParking * oneDaySavings;
 
-                txtDaysParking.Text = daysParking.ToString();
-                txtCreditRemaining.Text = creditRemaining.ToString("c");
+                txtDaysParking.Text = daysParking.ToString();  // Must set Text to a String
+                txtCreditRemaining.Text = creditRemaining.ToString("c");  //Use currency formatting 
                 txtSavings.Text = totalSavings.ToString("c");
             }
             else
@@ -54,31 +58,6 @@ namespace BusExpense
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTotal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
